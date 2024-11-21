@@ -11,4 +11,6 @@ public interface ICategoriaServicio {
 	public void eliminar(int codigo);
 	public List<Categoria> listaPorTipo(TipoEnum tipo);
 	public List<Categoria> lista();
+	public long count();
+	public void guardarTodo(List<Categoria> categorias);
 }

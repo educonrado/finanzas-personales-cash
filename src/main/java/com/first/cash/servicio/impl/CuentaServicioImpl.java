@@ -30,4 +30,14 @@ public class CuentaServicioImpl implements ICuentaServicio {
 		return cuentaRepositorio.findAll();
 	}
 
+	@Override
+	public long count() {
+		return cuentaRepositorio.count();
+	}
+
+	@Override
+	public void guardarTodo(List<Cuenta> cuentas) {
+		cuentaRepositorio.saveAll(cuentas);
+	}
+
 }

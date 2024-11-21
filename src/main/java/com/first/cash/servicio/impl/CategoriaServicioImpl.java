@@ -35,4 +35,14 @@ public class CategoriaServicioImpl implements ICategoriaServicio {
 		return categoriaRepositorio.findAll();
 	}
 
+	@Override
+	public long count() {
+		return categoriaRepositorio.count();
+	}
+
+	@Override
+	public void guardarTodo(List<Categoria> categorias) {
+		categoriaRepositorio.saveAll(categorias);		
+	}
+
 }

@@ -9,4 +9,6 @@ public interface ICuentaServicio {
 	public void guardar(Cuenta cuenta);
 	public void eliminar(int codigo);
 	public List<Cuenta> lista();
+	public long count();
+	public void guardarTodo(List<Cuenta> cuentas);
 }
