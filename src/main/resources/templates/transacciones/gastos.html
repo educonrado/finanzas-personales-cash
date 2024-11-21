@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/plantilla/plantilla}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Transacciones - gastos</title>
+</head>
+
+<body>
+	<div layout:fragment="contenedorprincipal">
+		<div class="page-inner">
+			<div class="page-header d-none d-lg-flex align-items-center">
+				<h3 class="fw-bold mb-3 me-3">Transacciones</h3>
+				<ul class="breadcrumbs mb-3 d-flex m-0">
+					<li class="nav-home">
+						<a th:href="@{/}">
+							<i class="icon-home"></i>
+						</a>
+					</li>
+					<li class="separator">
+						<i class="icon-arrow-right"></i>
+					</li>
+					<li class="nav-item">
+						Transacciones
+					</li>
+					<li class="separator">
+						<i class="icon-arrow-right"></i>
+					</li>
+					<li class="nav-item">
+						Gastos
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">
+							<div class="d-flex align-items-center">
+								<h4 class="card-title">Lista gastos</h4>
+								<a th:href="@{/transacciones/formulario-gasto}"
+									class="btn btn-secondary btn-round ms-auto">
+									<i class="fa fa-plus"></i>
+									Gastos
+								</a>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="add-row" class="display table table-striped table-hover">
+									<thead>
+										<tr>
+											<th>Fecha</th>
+											<th>Categoria</th>
+											<th>Valor</th>
+											<th>Cuenta</th>
+											<th>Detalles</th>
+											<th style="width: 10%">Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>11/11/2024</td>
+											<td>Vestimenta</td>
+											<td>$5000.00</td>
+											<td>Bco. Pichincha</td>
+											<td>Compra de uniformes</td>
+											<td>
+												<div class="form-button-action">
+													<button type="button" class="btn btn-link btn-primary"
+														data-original-title="Editar gastos">
+														<i class="icon-pencil"></i>
+													</button>
+													<button type="button" class="btn btn-link btn-danger"
+														data-original-title="Eliminar">
+														<i class="icon-trash"></i>
+													</button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

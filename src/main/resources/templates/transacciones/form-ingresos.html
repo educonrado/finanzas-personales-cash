@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/plantilla/plantilla}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Gastos</title>
+</head>
+
+<body>
+	<div layout:fragment="contenedorprincipal">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Formulario ingreso</div>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6 col-lg-4">
+						<div class="form-group">
+							<label for="fechaIngreso">Fecha</label>
+							<input type="date" class="form-control" id="fechaIngreso" placeholder="Detalle ingreso" />
+						</div>
+						<div class="form-group">
+							<label for="categoriaIngreso">Categoria</label>
+							<select class="form-select form-control" id="categoriaIngreso">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="valorIngreso">Valor</label>
+							<div class="input-group mb-3">
+								<span class="input-group-text">$</span>
+								<input type="number" min="0" max="100000000" class="form-control" aria-label="Valor"
+									id="valorIngreso" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="cuentaIngreso">Cuenta</label>
+							<select class="form-select form-control" id="cuentaIngreso">
+								<option>Efectivo</option>
+								<option>Fondo de inversión</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="detalleIngreso">Detalles (Opcional)</label>
+							<input type="text" class="form-control" id="detalleIngreso" placeholder="Detalle ingreso" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-action">
+				<button class="btn btn-success">Guardar</button>
+				<a th:href="@{/}" class="btn btn-danger">Cancelar</a>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

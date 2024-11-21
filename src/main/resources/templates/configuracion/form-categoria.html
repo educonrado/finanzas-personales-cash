@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/plantilla/plantilla}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Formulario - Categoria</title>
+</head>
+
+<body>
+	<div layout:fragment="contenedorprincipal">
+		<div class="card">
+			<div class="card-header">
+				<div class="card-title">Nueva categoria</div>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6 col-lg-4">
+						<div class="form-group">
+							<label for="nombreCategoria">Nombre</label>
+							<input type="text" class="form-control" id="nombreCategoria" placeholder="Inversiones" />
+						</div>
+						<div class="form-group">
+							<label>Tipo</label><br />
+							<div class="d-flex">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="flexRadioDefault"
+										id="radioIngreso" checked/>
+									<label class="form-check-label" for="flexRadioDefault1">
+										Ingreso
+									</label>
+								</div>
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="flexRadioDefault" id="radioGasto"/>
+									<label class="form-check-label" for="flexRadioDefault2">
+										Gasto
+									</label>
+								</div>
+							</div>
+						</div>
+						<!-- Seleccionar iconos
+								<div class="form-group">
+									<label for="iconoCategoria">Icono</label>
+									<select class="form-select form-control" id="iconoCategoria">
+										<option selected><i class="icon-arrow-right-circle"></i> </option>
+										<option><i class="icon-social-skype"></i> </option>
+										<option><i class="icon-pencil"></i> </option>
+									</select>
+								</div>-->
+					</div>
+				</div>
+			</div>
+			<div class="card-action">
+				<button class="btn btn-success">Guardar</button>
+				<a th:href="@{/}" class="btn btn-danger">Cancelar</a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

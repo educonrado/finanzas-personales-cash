@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{/plantilla/plantilla}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Finanzas personales - 1° Cash</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+	<div layout:fragment="contenedorprincipal">
+		<div class="page-inner">
+			<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+				<div>
+					<h3 class="fw-bold mb-3">Mis cuentas</h3>
+					<h6 class="op-7 mb-2">Resumen</h6>
+				</div>
+				<div class="ms-md-auto py-2 py-md-0">
+					<a th:href="@{/transacciones/formulario-gasto}" class="btn btn-secondary btn-border btn-round">
+						<span class="btn-label">
+							<i class="fa fa-plus"></i>
+						</span>
+						Gasto</a>
+					<a th:href="@{/transacciones/formulario-ingreso}" class="btn btn-primary btn-round">
+						<span class="btn-label">
+							<i class="fa fa-plus"></i>
+						</span>
+						Ingreso</a>
+				</div>
+			</div>
+
+			<div class="row">
+
+				<div class="col-md-6">
+					<div class="card card-sucess card-round">
+						<div class="card-header">
+							<div class="card-head-row">
+								<div class="card-title">Saldo</div>
+							</div>
+							<div class="card-category">Noviembre 2024</div>
+						</div>
+						<div class="card-body pb-0">
+							<div class="pull-in">
+								<canvas id="donutChart"></canvas>
+								<script>
+									document.addEventListener('DOMContentLoaded', function () {
+										const ctx = document.getElementById('donutChart').getContext('2d');
+										const data = {
+											labels: ['Efectivo', 'Cuenta 2', 'Cuenta 3', 'Cuenta 4'],
+											datasets: [{
+												data: [500, 300, 200, 100],
+												backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+											}]
+										};
+										new Chart(ctx, {
+											type: 'doughnut',
+											data: data
+										});
+									});
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="card card-primary card-round">
+						<div class="card-header">
+							<div class="card-head-row">
+								<div class="card-title">Gastos</div>
+							</div>
+							<div class="card-category">Noviembre 2024</div>
+						</div>
+						<div class="card-body pb-0">
+							<div class="mb-4 mt-2">
+								<h1>$4,578.58</h1>
+							</div>
+							<div class="pull-in">
+								<canvas id="dailySalesChart"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card card-round">
+						<div class="card-body">
+							<div class="card-head-row card-tools-still-right">
+								<div class="card-title">Cuentas</div>
+							</div>
+							<div class="card-list py-4">
+								<div class="item-list">
+									<div class="avatar">
+										<span class="avatar-title rounded-circle border border-white">EF</span>
+									</div>
+									<div class="info-user ms-3">
+										<div class="username">Efectivo</div>
+									</div>
+									<div class="op-8 me-1">
+										$500.00
+									</div>
+
+								</div>
+								<div class="item-list">
+									<div class="avatar">
+										<span class="avatar-title rounded-circle border border-white">C1</span>
+									</div>
+									<div class="info-user ms-3">
+										<div class="username">Cuenta 1</div>
+									</div>
+									<div class="op-8 me-1">
+										$56700.00
+									</div>
+
+								</div>
+								<div class="item-list">
+									<div class="avatar">
+										<span class="avatar-title rounded-circle border border-white">FI</span>
+									</div>
+									<div class="info-user ms-3">
+										<div class="username">Fondo de inversión</div>
+									</div>
+									<div class="op-8 me-1">
+										$100500.00
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="card card-round">
+						<div class="card-header">
+							<div class="card-head-row card-tools-still-right">
+								<div class="card-title">Historial de transacciones <span
+										class="badge badge-success">Noviembre</span></div>
+							</div>
+						</div>
+						<div class="card-body p-0">
+							<div class="table-responsive">
+								<!-- Projects table -->
+								<table class="table align-items-center mb-0">
+									<thead class="thead-light">
+										<tr>
+											<th scope="col">Categoria</th>
+											<th scope="col" class="text-end">Valor</th>
+											<th scope="col" class="text-end">Tipo</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Regalos</td>
+											<td class="text-end">$250.00</td>
+											<td class="text-end">
+												<span class="badge badge-success">Ingreso</span>
+											</td>
+										</tr>
+										<tr>
+											<td>Alimentación</td>
+											<td class="text-end">$250.00</td>
+											<td class="text-end">
+												<span class="badge badge-secondary">Gasto</span>
+											</td>
+										</tr>
+										<tr>
+											<td>Sueldo</td>
+											<td class="text-end">$25000.00</td>
+											<td class="text-end">
+												<span class="badge badge-success">Ingreso</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>
