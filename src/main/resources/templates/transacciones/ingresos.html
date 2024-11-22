@@ -40,7 +40,10 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="d-flex align-items-center">
-								<h4 class="card-title">Lista ingresos</h4>
+								<h4 class="card-title">Lista ingresos (
+									<span th:text="${ingresos.size}"></span>
+									)
+								</h4>
 
 								<a th:href="@{/transacciones/formulario-ingreso}"
 									class="btn btn-primary btn-round ms-auto">
@@ -59,22 +62,23 @@
 											<th>Valor</th>
 											<th>Cuenta</th>
 											<th>Detalles</th>
-											<th style="width: 10%">Acciones</th>
+											<th>Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>11/11/2024</td>
-											<td>Sueldo</td>
-											<td>$5000.00</td>
-											<td>Bco. Pichincha</td>
-											<td>Sueldo de enero 2024</td>
+										<tr th:each="ing: ${ingresos}">
+											<td th:text="*{ing.fecha}"></td>
+											<td th:text="*{ing.categoria.nombre}"></td>
+											<td th:text="*{ing.valor}"></td>
+											<td th:text="*{ing.cuenta.nombre}"></td>
+											<td th:text="*{ing.detalles}"></td>
 											<td>
 												<div class="form-button-action">
-													<button type="button" class="btn btn-link btn-primary"
+													<a th:href="@{/transacciones/formulario-ingreso/editar/}+${ing.codigo}"
+														class="btn btn-link btn-primary"
 														data-original-title="Editar gastos">
 														<i class="icon-pencil"></i>
-													</button>
+													</a>
 													<button type="button" class="btn btn-link btn-danger"
 														data-original-title="Eliminar">
 														<i class="icon-trash"></i>

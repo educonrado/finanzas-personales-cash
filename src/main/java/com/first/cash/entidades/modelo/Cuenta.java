@@ -8,9 +8,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Cuenta implements Serializable {
 
@@ -35,4 +37,11 @@ public class Cuenta implements Serializable {
 
 	@OneToMany(mappedBy = "cuenta")
 	private List<Transaccion> transacciones;
+
+	@Override
+	public String toString() {
+		return "Cuenta [codigo=" + codigo + ", nombre=" + nombre + ", saldoInicial=" + saldoInicial + ", color=" + color
+				+ "]";
+	}
+	
 }
