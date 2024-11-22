@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.first.cash.entidades.modelo.Cuenta;
@@ -32,6 +33,18 @@ public class ConfiguracionesCuentaControlador {
 	public String guardarCuenta(@ModelAttribute Cuenta nuevaCuenta) {
 		cuentaServicio.guardar(nuevaCuenta);
         return "redirect:/configuraciones/cuentas";
+	}
+	
+	@GetMapping("/configuraciones/cuenta/editar/{codigo}")
+	public String editarCuenta(@PathVariable int codigo, Model model) {
+		model.addAttribute("nuevaCuenta", cuentaServicio.findByCodigo(codigo));
+		return "configuracion/form-cuenta";
+	}
+	
+	@GetMapping("/configuraciones/cuenta/eliminar/{codigo}")
+	public String eliminarcuenta(@PathVariable int codigo) {
+		cuentaServicio.eliminar(codigo);
+		return "redirect:/configuraciones/cuentas";
 	}
 	
 }

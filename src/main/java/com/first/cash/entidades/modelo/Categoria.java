@@ -23,13 +23,17 @@ import lombok.Data;
 		private String nombre;
 		@Enumerated(EnumType.STRING)
 		private TipoEnum tipo;
-		private String icono;
+		private String icono = "icon-flag";
 		
 		public Categoria(String nombre, TipoEnum tipo, String icono) {
 			super();
 			this.nombre = nombre;
 			this.tipo = tipo;
 			this.icono = icono;
+		}
+
+		public Categoria() {
+			super();
 		}
 
 		@OneToMany(mappedBy = "categoria")

@@ -17,6 +17,7 @@
 				<div class="card-title">Nueva cuenta</div>
 			</div>
 			<form th:action="@{/configuraciones/cuenta/guardar}" th:object="${nuevaCuenta}" method="post">
+				<input type="hidden" th:field="*{codigo}"/>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-6 col-lg-4">
