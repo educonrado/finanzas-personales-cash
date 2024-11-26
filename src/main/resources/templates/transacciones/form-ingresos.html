@@ -13,7 +13,7 @@
 <body>
 	<div layout:fragment="contenedorprincipal">
 		<div class="card">
-			<form method="post" th:action="@{/transacciones/formulario-ingreso/guardar}" th:object="${ingreso}">
+			<form method="post" th:action="@{/transacciones/formulario/guardar}" th:object="${ingreso}">
 				<input type="hidden" th:field="*{codigo}"/>
 				<div class="card-header">
 					<div class="card-title">Formulario ingreso</div>

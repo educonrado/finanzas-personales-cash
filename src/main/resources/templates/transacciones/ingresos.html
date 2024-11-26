@@ -69,7 +69,7 @@
 										<tr th:each="ing: ${ingresos}">
 											<td th:text="*{ing.fecha}"></td>
 											<td th:text="*{ing.categoria.nombre}"></td>
-											<td th:text="*{ing.valor}"></td>
+											<td th:text="'$' + ${#numbers.formatDecimal(ing.valor, 1, 'COMMA', 2, 'POINT')}"></td>
 											<td th:text="*{ing.cuenta.nombre}"></td>
 											<td th:text="*{ing.detalles}"></td>
 											<td>
@@ -79,10 +79,12 @@
 														data-original-title="Editar gastos">
 														<i class="icon-pencil"></i>
 													</a>
-													<button type="button" class="btn btn-link btn-danger"
+													<a class="btn btn-link btn-danger"
+														th:href="@{/transacciones/eliminar/}+${ing.codigo}"
+														onclick="return confirm('¿Estás seguro de que deseas eliminar la transacción?');"
 														data-original-title="Eliminar">
 														<i class="icon-trash"></i>
-													</button>
+													</a>
 												</div>
 											</td>
 										</tr>

@@ -15,7 +15,7 @@ import com.first.cash.servicio.ICuentaServicio;
 import com.first.cash.servicio.ITransaccionServicio;
 
 @Controller
-public class IngresoControlador {
+public class TransaccionControlador {
 
 	@Autowired
 	private ITransaccionServicio transaccionServicio;
@@ -32,6 +32,12 @@ public class IngresoControlador {
         return "transacciones/ingresos";
     }
 	
+	@GetMapping("transacciones/gastos")
+    public String obtenerGastos(Model model) {
+		model.addAttribute("gastos", transaccionServicio.listaPorTipo(TipoEnum.GASTO));
+        return "transacciones/gastos";
+    }
+	
 	@GetMapping("/transacciones/formulario-ingreso")
     public String obtenerFormularioIngreso(Model model) {
 		model.addAttribute("ingreso", new Transaccion());
@@ -40,10 +46,27 @@ public class IngresoControlador {
         return "transacciones/form-ingresos";
     }
 	
-	@PostMapping("/transacciones/formulario-ingreso/guardar")
+	@GetMapping("transacciones/formulario-gasto")
+    public String obtenerFormularioGasto(Model model) {
+		model.addAttribute("gasto", new Transaccion());
+		model.addAttribute("categorias", categoriaServicio.listaPorTipo(TipoEnum.GASTO));
+		model.addAttribute("cuentas", cuentaServicio.lista());
+        return "transacciones/form-gastos";
+    }
+	
+	/**
+	 * Guarda ingreso y gastos
+	 * @param transaccion
+	 * @return
+	 */
+	@PostMapping("/transacciones/formulario/guardar")
 	public String guardarTransaccion(@ModelAttribute Transaccion transaccion) {
 		transaccionServicio.guardar(transaccion);
-		return "redirect:/transacciones/ingresos";
+		if (TipoEnum.INGRESO.equals(transaccion.getCategoria().getTipo())) {
+			return "redirect:/transacciones/ingresos";			
+		} else {
+			return "redirect:/transacciones/gastos";						
+		}
 	}
 	
 	@GetMapping("/transacciones/formulario-ingreso/editar/{codigo}")
@@ -53,5 +76,24 @@ public class IngresoControlador {
 		model.addAttribute("cuentas", cuentaServicio.lista());
         return "transacciones/form-ingresos";
     }
+	
+	@GetMapping("/transacciones/formulario-gasto/editar/{codigo}")
+	public String obtenerFormularioGasto(@PathVariable int codigo, Model model) {
+		model.addAttribute("gasto", transaccionServicio.finByCodigo(codigo));
+		model.addAttribute("categorias", categoriaServicio.listaPorTipo(TipoEnum.GASTO));
+		model.addAttribute("cuentas", cuentaServicio.lista());
+		return "transacciones/form-gastos";
+	}
+	
+	/**
+	 * Elimina ingresos y gastos
+	 * @param codigo
+	 * @return
+	 */
+	@GetMapping("/transacciones/eliminar/{codigo}")
+	public String eliminarTransaccion(@PathVariable int codigo) {
+		transaccionServicio.eliminar(codigo);
+		return "redirect:/transacciones/ingresos";
+	}
 	
 }

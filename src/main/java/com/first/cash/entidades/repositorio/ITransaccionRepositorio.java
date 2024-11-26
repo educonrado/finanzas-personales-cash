@@ -14,6 +14,6 @@ public interface ITransaccionRepositorio extends JpaRepository<Transaccion, Inte
 
 	@Query("select t from Transaccion t where t.fecha = ?1")
 	public List<Transaccion> findAllByMes(int mes);
-	@Query("select t from Transaccion t where t.categoria.tipo = ?1")
+	@Query("select t from Transaccion t where t.categoria.tipo = ?1 order by t.fecha desc")
 	public List<Transaccion> findAllByTipo(TipoEnum tipo);
 }
