@@ -62,7 +62,7 @@
 									<tbody>
 										<tr th:each="cuenta: ${cuentas}">
 											<td th:text="${cuenta.nombre}"></td>
-											<td th:text="'$' + ${#numbers.formatDecimal(cuenta.saldoInicial, 1, 'COMMA', 2, 'POINT')}"></td>
+											<td th:text="'$' + ${#numbers.formatDecimal(cuenta.saldo, 1, 'COMMA', 2, 'POINT')}"></td>
 											<td>
 												<div class="form-button-action">
 													<a th:href="@{/configuraciones/cuenta/editar/}+${cuenta.codigo}" type="button" class="btn btn-link btn-primary"

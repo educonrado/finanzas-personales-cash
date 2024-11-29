@@ -27,8 +27,8 @@ public class TransaccionServicioImpl implements ITransaccionServicio {
 	}
 
 	@Override
-	public List<Transaccion> listaPorMes(int mes) {
-		return transaccionRepositorio.findAllByMes(mes);
+	public List<Transaccion> findAllByAnioMes(int anio, int mes) {
+		return transaccionRepositorio.findAllByAnioMes(anio, mes);
 	}
 
 	@Override

@@ -27,8 +27,8 @@
 									placeholder="Detalle ingreso" />
 							</div>
 							<div class="form-group">
-								<label for="categoriaGasto">Categoria</label>
-								<select class="form-select form-control" id="categoriaGasto" th:field="*{categoria}">
+								<label for="categoriaGasto">*Categoria</label>
+								<select class="form-select form-control" id="categoriaGasto" th:field="*{categoria}" required="true">
 									<option value="" selected>Seleccione...</option>
 									<option th:each="cat: ${categorias}" th:value="${cat.codigo}"
 										th:text="${cat.nombre}"></option>
@@ -43,8 +43,8 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="cuentaGasto">Cuenta</label>
-								<select class="form-select form-control" id="cuentaGasto" th:field="*{cuenta}">
+								<label for="cuentaGasto">*Cuenta</label>
+								<select class="form-select form-control" id="cuentaGasto" th:field="*{cuenta}" required="true">
 									<option value="" selected>Seleccione...</option>
 									<option th:each="cuenta: ${cuentas}" th:value="${cuenta.codigo}"
 										th:text="${cuenta.nombre}"></option>
@@ -60,7 +60,7 @@
 				</div>
 				<div class="card-action">
 					<button type="submit" class="btn btn-success">Guardar</button>
-					<a th:href="@{/}" class="btn btn-danger">Cancelar</a>
+					<a th:href="@{/transacciones/gastos}" class="btn btn-danger">Cancelar</a>
 				</div>
 			</form>
 		</div>

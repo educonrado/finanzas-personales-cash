@@ -10,7 +10,7 @@ public interface ITransaccionServicio {
 
 	public void guardar(Transaccion transaccion);
 	public void eliminar(int codigo);
-	public List<Transaccion> listaPorMes(int mes);
+	public List<Transaccion> findAllByAnioMes(int anio, int mes);
 	public List<Transaccion> listaPorTipo(TipoEnum tipo);
 	public Optional<Transaccion> finByCodigo(int codigo);
 }

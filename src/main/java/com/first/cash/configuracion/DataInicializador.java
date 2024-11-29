@@ -34,9 +34,8 @@ public class DataInicializador implements CommandLineRunner {
 
 	private void crearCuentasIniciales() {
 		List<Cuenta> cuentas = Arrays.asList(
-				new Cuenta("Efectivo", 0, "#FF5733"),
-				new Cuenta("Cuenta de Ahorros", 0, "#33FF57"), 
-				new Cuenta("Tarjeta de Crédito", 0, "#3357FF")
+				new Cuenta("Efectivo", 0),
+				new Cuenta("Cuenta de Ahorros", 0)
 				);
 		cuentaServicio.guardarTodo(cuentas);
 	}

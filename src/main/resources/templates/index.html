@@ -87,6 +87,7 @@
 				</div>
 
 			</div>
+			<!--Cuentas-->
 			<div class="row">
 				<div class="col-md-4">
 					<div class="card card-round">
@@ -95,39 +96,15 @@
 								<div class="card-title">Cuentas</div>
 							</div>
 							<div class="card-list py-4">
-								<div class="item-list">
+								<div class="item-list" th:each="cuenta: ${cuentas}">
 									<div class="avatar">
-										<span class="avatar-title rounded-circle border border-white">EF</span>
+										<span class="avatar-title rounded-circle border border-white" th:style="'background-color:' + ${cuenta.color}"></span>
 									</div>
 									<div class="info-user ms-3">
-										<div class="username">Efectivo</div>
+										<div class="username" th:text="${cuenta.nombre}"></div>
 									</div>
-									<div class="op-8 me-1">
-										$500.00
-									</div>
-
-								</div>
-								<div class="item-list">
-									<div class="avatar">
-										<span class="avatar-title rounded-circle border border-white">C1</span>
-									</div>
-									<div class="info-user ms-3">
-										<div class="username">Cuenta 1</div>
-									</div>
-									<div class="op-8 me-1">
-										$56700.00
-									</div>
-
-								</div>
-								<div class="item-list">
-									<div class="avatar">
-										<span class="avatar-title rounded-circle border border-white">FI</span>
-									</div>
-									<div class="info-user ms-3">
-										<div class="username">Fondo de inversión</div>
-									</div>
-									<div class="op-8 me-1">
-										$100500.00
+									<div class="op-8 me-1"
+										th:text="'$' + ${#numbers.formatDecimal(cuenta.saldo, 1, 'COMMA', 2, 'POINT')}">
 									</div>
 
 								</div>
@@ -135,12 +112,13 @@
 						</div>
 					</div>
 				</div>
+				<!--Historial mensula de transacciones-->
 				<div class="col-md-8">
 					<div class="card card-round">
 						<div class="card-header">
 							<div class="card-head-row card-tools-still-right">
-								<div class="card-title">Historial de transacciones <span
-										class="badge badge-success">Noviembre</span></div>
+								<div class="card-title">Historial de transacciones <span class="badge badge-success"
+										th:text="${@formateoFechaServicio.formatMes(mes)}"></span></div>
 							</div>
 						</div>
 						<div class="card-body p-0">
@@ -150,30 +128,27 @@
 									<thead class="thead-light">
 										<tr>
 											<th scope="col">Categoria</th>
+											<th scope="col">Fecha</th>
 											<th scope="col" class="text-end">Valor</th>
 											<th scope="col" class="text-end">Tipo</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Regalos</td>
-											<td class="text-end">$250.00</td>
-											<td class="text-end">
-												<span class="badge badge-success">Ingreso</span>
+										<tr th:each="tra: ${transacciones}">
+											<td>
+												<i
+													th:class="${tra.categoria.tipo.name() == 'INGRESO'} ? 'fa fa-arrow-up text-success' : 'fa fa-arrow-down text-danger'"></i>
+												<span th:text="${tra.categoria.nombre}">
+												</span>
 											</td>
-										</tr>
-										<tr>
-											<td>Alimentación</td>
-											<td class="text-end">$250.00</td>
-											<td class="text-end">
-												<span class="badge badge-secondary">Gasto</span>
+											<td th:text="${@formateoFechaServicio.format(tra.fecha, 'EEEE-dd')}"></td>
+											<td class="text-end"
+												th:text="'$' + ${#numbers.formatDecimal(tra.valor, 1, 'COMMA', 2, 'POINT')}">
 											</td>
-										</tr>
-										<tr>
-											<td>Sueldo</td>
-											<td class="text-end">$25000.00</td>
 											<td class="text-end">
-												<span class="badge badge-success">Ingreso</span>
+												<span
+													th:class="${tra.categoria.tipo.name() == 'INGRESO'} ? 'badge badge-success' : 'badge badge-danger'"
+													th:text="${tra.categoria.tipo}"></span>
 											</td>
 										</tr>
 									</tbody>

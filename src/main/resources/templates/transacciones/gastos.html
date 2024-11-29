@@ -44,6 +44,7 @@
 									(
 									<span th:text="${gastos.size}"></span>
 									)
+									<span class="badge badge-success"> Noviembre</span>
 								</h4>
 								<a th:href="@{/transacciones/formulario-gasto}"
 									class="btn btn-secondary btn-round ms-auto">
@@ -57,7 +58,7 @@
 								<table id="add-row" class="display table table-striped table-hover">
 									<thead>
 										<tr>
-											<th style="width: 1rem;">Fecha</th>
+											<th>Fecha</th>
 											<th style="width: 1rem;"></th>
 											<th>Categoria</th>
 											<th>Valor</th>
@@ -68,7 +69,7 @@
 									</thead>
 									<tbody>
 										<tr th:each="gasto: ${gastos}">
-											<td th:text="${gasto.fecha}"></td>
+											<td th:text="*{@formateoFechaServicio.format(gasto.fecha, 'EEEE-dd')}"></td>
 											<td th:class="${gasto.categoria.icono}" style="color: blue;"></td>
 											<td th:text="${gasto.categoria.nombre}"></td>
 											<td th:text="'$' + ${#numbers.formatDecimal(gasto.valor, 1, 'COMMA', 2, 'POINT')}"></td>
