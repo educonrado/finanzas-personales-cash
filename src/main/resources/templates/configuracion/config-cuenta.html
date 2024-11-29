@@ -61,7 +61,10 @@
 									</thead>
 									<tbody>
 										<tr th:each="cuenta: ${cuentas}">
-											<td th:text="${cuenta.nombre}"></td>
+											<td>
+												<div class="color-cuenta" th:style="'background-color:'+${cuenta.color}"></div>
+												<span th:text="${cuenta.nombre}"></span>
+											</td>
 											<td th:text="'$' + ${#numbers.formatDecimal(cuenta.saldo, 1, 'COMMA', 2, 'POINT')}"></td>
 											<td>
 												<div class="form-button-action">

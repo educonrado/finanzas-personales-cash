@@ -38,14 +38,13 @@
 								<label for="valorGasto">Valor</label>
 								<div class="input-group mb-3">
 									<span class="input-group-text">$</span>
-									<input type="number" min="0" max="100000000" class="form-control" aria-label="Valor"
+									<input type="number" min="0" max="100000000" step="0.01" class="form-control" aria-label="Valor"
 										th:field="*{valor}" id="valorGasto" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="cuentaGasto">*Cuenta</label>
 								<select class="form-select form-control" id="cuentaGasto" th:field="*{cuenta}" required="true">
-									<option value="" selected>Seleccione...</option>
 									<option th:each="cuenta: ${cuentas}" th:value="${cuenta.codigo}"
 										th:text="${cuenta.nombre}"></option>
 								</select>

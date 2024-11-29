@@ -41,9 +41,7 @@
 						<div class="card-header">
 							<div class="d-flex align-items-center">
 								<h4 class="card-title">Lista gastos
-									(
-									<span th:text="${gastos.size}"></span>
-									)
+									<span class="badge badge-success" th:text="${gastos.size}"></span>
 									<span class="badge badge-success"> Noviembre</span>
 								</h4>
 								<a th:href="@{/transacciones/formulario-gasto}"

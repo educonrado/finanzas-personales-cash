@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.first.cash.entidades.modelo.TipoEnum;
 import com.first.cash.entidades.modelo.Transaccion;
 import com.first.cash.entidades.repositorio.ITransaccionRepositorio;
+import com.first.cash.entidades.to.TransaccionAnualTo;
 import com.first.cash.servicio.ITransaccionServicio;
 
 @Service
@@ -39,6 +40,11 @@ public class TransaccionServicioImpl implements ITransaccionServicio {
 	@Override
 	public Optional<Transaccion> finByCodigo(int codigo) {
 		return transaccionRepositorio.findById(codigo);
+	}
+
+	@Override
+	public List<TransaccionAnualTo> agruparTransaccionesPoAnioYTipo(int anio, TipoEnum tipo) {
+		return transaccionRepositorio.agruparTransaccionesPoAnioYTipo(anio, tipo);
 	}
 
 }
