@@ -40,7 +40,7 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="d-flex align-items-center">
-								<h4 class="card-title">Lista de cuentas</h4>
+								<h4 class="card-title">Cuentas</h4>
 
 								<a th:href="@{/configuraciones/formulario-cuenta}"
 									class="btn btn-primary btn-round ms-auto">
@@ -61,18 +61,22 @@
 									</thead>
 									<tbody>
 										<tr th:each="cuenta: ${cuentas}">
-											<td th:text="${cuenta.nombre}"></td>
-											<td th:text="'$' + ${#numbers.formatDecimal(cuenta.saldoInicial, 1, 'COMMA', 2, 'POINT')}"></td>
+											<td>
+												<div class="color-cuenta" th:style="'background-color:'+${cuenta.color}"></div>
+												<span th:text="${cuenta.nombre}"></span>
+											</td>
+											<td th:text="'$' + ${#numbers.formatDecimal(cuenta.saldo, 1, 'COMMA', 2, 'POINT')}"></td>
 											<td>
 												<div class="form-button-action">
-													<button type="button" class="btn btn-link btn-primary"
-														data-original-title="Editar gastos">
+													<a th:href="@{/configuraciones/cuenta/editar/}+${cuenta.codigo}" type="button" class="btn btn-link btn-primary"
+														data-original-title="Editar cuenta">
 														<i class="icon-pencil"></i>
-													</button>
-													<button type="button" class="btn btn-link btn-danger"
-														data-original-title="Eliminar">
+													</a>
+													<a th:href="@{/configuraciones/cuenta/eliminar/}+${cuenta.codigo}" type="button" class="btn btn-link btn-danger"
+														data-original-title="Eliminar"
+														onclick="return confirm('¿Estás seguro de que deseas eliminar esta cuenta?');">
 														<i class="icon-trash"></i>
-													</button>
+													</a>
 												</div>
 											</td>
 										</tr>

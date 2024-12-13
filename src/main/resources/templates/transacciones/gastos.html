@@ -40,7 +40,10 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="d-flex align-items-center">
-								<h4 class="card-title">Lista gastos</h4>
+								<h4 class="card-title">Lista gastos
+									<span class="badge badge-success" th:text="${gastos.size}"></span>
+									<span class="badge badge-success"> Noviembre</span>
+								</h4>
 								<a th:href="@{/transacciones/formulario-gasto}"
 									class="btn btn-secondary btn-round ms-auto">
 									<i class="fa fa-plus"></i>
@@ -54,6 +57,7 @@
 									<thead>
 										<tr>
 											<th>Fecha</th>
+											<th style="width: 1rem;"></th>
 											<th>Categoria</th>
 											<th>Valor</th>
 											<th>Cuenta</th>
@@ -62,22 +66,25 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>11/11/2024</td>
-											<td>Vestimenta</td>
-											<td>$5000.00</td>
-											<td>Bco. Pichincha</td>
-											<td>Compra de uniformes</td>
+										<tr th:each="gasto: ${gastos}">
+											<td th:text="*{@formateoFechaServicio.format(gasto.fecha, 'EEEE-dd')}"></td>
+											<td th:class="${gasto.categoria.icono}" style="color: blue;"></td>
+											<td th:text="${gasto.categoria.nombre}"></td>
+											<td th:text="'$' + ${#numbers.formatDecimal(gasto.valor, 1, 'COMMA', 2, 'POINT')}"></td>
+											<td th:text="${gasto.cuenta.nombre}"></td>
+											<td th:text="${gasto.detalles}"></td>
 											<td>
 												<div class="form-button-action">
-													<button type="button" class="btn btn-link btn-primary"
+													<a th:href="@{/transacciones/formulario-gasto/editar/}+${gasto.codigo}"
+														class="btn btn-link btn-primary"
 														data-original-title="Editar gastos">
 														<i class="icon-pencil"></i>
-													</button>
-													<button type="button" class="btn btn-link btn-danger"
-														data-original-title="Eliminar">
+													</a>
+													<a th:href="@{/transacciones/eliminar/}+${gasto.codigo}"
+														onclick="return confirm('¿Estás seguro de que deseas eliminar la transacción?');"
+														class="btn btn-link btn-danger" data-original-title="Eliminar">
 														<i class="icon-trash"></i>
-													</button>
+													</a>
 												</div>
 											</td>
 										</tr>

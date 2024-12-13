@@ -13,24 +13,32 @@
 <body>
 	<div layout:fragment="contenedorprincipal">
 		<div class="card">
-			<div class="card-header">
-				<div class="card-title">Nueva cuenta</div>
-			</div>
 			<form th:action="@{/configuraciones/cuenta/guardar}" th:object="${nuevaCuenta}" method="post">
+				<input type="hidden" th:field="*{codigo}" />
+				<div class="card-header">
+					<div class="card-title">Nueva cuenta</div>
+				</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-6 col-lg-4">
 							<div class="form-group">
 								<label for="nombreCategoria">Nombre</label>
-								<input type="text" th:field="*{nombre}" class="form-control" id="nombreCategoria"
-									placeholder="Efectivo" />
+								<div class="input-group mb-3">
+									<input type="text" th:field="*{nombre}" class="form-control" id="nombreCategoria"
+										placeholder="nombre de la cuenta" />
+									<span class="input-group-text">
+										<input type="color" class="color-picker-square" id="colorPicker"
+											name="colorPicker" th:field="*{color}" />
+									</span>
+								</div>
 							</div>
+
 							<div class="form-group">
 								<label for="valorIngreso">Saldo inicial</label>
 								<div class="input-group mb-3">
 									<span class="input-group-text">$</span>
-									<input type="number" th:field="*{saldoInicial}" min="0"
-										class="form-control" aria-label="Valor" id="saldoInicial" />
+									<input type="number" th:field="*{saldo}" min="0" max="10000000000" step="0.01" class="form-control"
+										aria-label="Valor" id="saldo" />
 								</div>
 							</div>
 						</div>
@@ -38,7 +46,7 @@
 				</div>
 				<div class="card-action">
 					<button type="submit" class="btn btn-success">Guardar</button>
-					<a th:href="@{/}" class="btn btn-danger">Cancelar</a>
+					<a th:href="@{/configuraciones/cuentas}" class="btn btn-danger">Cancelar</a>
 				</div>
 			</form>
 		</div>

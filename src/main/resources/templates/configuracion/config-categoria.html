@@ -40,7 +40,10 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="d-flex align-items-center">
-								<h4 class="card-title">Lista de categorias - ingresos</h4>
+								<h4 class="card-title">Ingresos (
+									<span th:text="${categoriaIngresos.size}"></span>
+									)
+								</h4>
 
 								<a th:href="@{/configuraciones/formulario-categoria}"
 									class="btn btn-primary btn-round ms-auto">
@@ -54,26 +57,30 @@
 								<table id="add-row" class="display table table-striped table-hover">
 									<thead>
 										<tr>
+											<th></th>
 											<th>Nombre</th>
-											<th>Tipo</th>
 											<th style="width: 10%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
 
-										<tr>
-											<td>Sueldo</td>
-											<td>Ingreso</td>
+										<tr th:each="ingreso: ${categoriaIngresos}">
+											<td>
+												<i th:class="${ingreso.icono}"></i>
+											</td>
+											<td th:text="${ingreso.nombre}"></td>
 											<td>
 												<div class="form-button-action">
-													<button type="button" class="btn btn-link btn-primary"
-														data-original-title="Editar gastos">
+													<a th:href="@{/configuraciones/formulario-categoria/editar/}+*{ingreso.codigo}"
+														class="btn btn-link btn-primary"
+														data-original-title="Editar ingreso">
 														<i class="icon-pencil"></i>
-													</button>
-													<button type="button" class="btn btn-link btn-danger"
-														data-original-title="Eliminar">
+													</a>
+													<a th:href="@{/configuraciones/eliminar/}+*{ingreso.codigo}"
+														class="btn btn-link btn-danger" data-original-title="Eliminar"
+														onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?');">
 														<i class="icon-trash"></i>
-													</button>
+													</a>
 												</div>
 											</td>
 										</tr>
@@ -87,7 +94,11 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="d-flex align-items-center">
-								<h4 class="card-title">Lista de categorias - gastos</h4>
+								<h4 class="card-title">Gastos
+									(
+									<span th:text="${categoriaGastos.size}"></span>
+									)
+								</h4>
 
 								<a th:href="@{/configuraciones/formulario-categoria}"
 									class="btn btn-primary btn-round ms-auto">
@@ -101,41 +112,30 @@
 								<table id="add-row" class="display table table-striped table-hover">
 									<thead>
 										<tr>
+											<th></th>
 											<th>Nombre</th>
-											<th>Tipo</th>
-											<th style="width: 10%">Acciones</th>
+											<th>Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Educaci&oacute;n</td>
-											<td>Gasto</td>
+										<tr th:each="gasto: ${categoriaGastos}">
 											<td>
-												<div class="form-button-action">
-													<button type="button" class="btn btn-link btn-primary"
-														data-original-title="Editar gastos">
-														<i class="icon-pencil"></i>
-													</button>
-													<button type="button" class="btn btn-link btn-danger"
-														data-original-title="Eliminar">
-														<i class="icon-trash"></i>
-													</button>
-												</div>
+												<i th:class="${gasto.icono}"></i>
 											</td>
-										</tr>
-										<tr>
-											<td>Vivienda</td>
-											<td>Gasto</td>
+											<td th:text="${gasto.nombre}"></td>
 											<td>
 												<div class="form-button-action">
-													<button type="button" class="btn btn-link btn-primary"
+													<a th:href="@{/configuraciones/formulario-categoria/editar/}+*{gasto.codigo}"
+														class="btn btn-link btn-primary"
 														data-original-title="Editar gastos">
 														<i class="icon-pencil"></i>
-													</button>
-													<button type="button" class="btn btn-link btn-danger"
-														data-original-title="Eliminar">
+													</a>
+													<a th:href="@{/configuraciones/eliminar/}+*{gasto.codigo}"
+														class="btn btn-link btn-danger" data-original-title="Eliminar"
+														onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?');">
 														<i class="icon-trash"></i>
-													</button>
+													</a>
+
 												</div>
 											</td>
 										</tr>
